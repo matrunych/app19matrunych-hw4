@@ -1,35 +1,71 @@
 package ua.edu.ucu.tries;
 
+import ua.edu.ucu.collections.Queue;
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
 public class RWayTrie implements Trie {
+    private Node root;
+    private int size;
+
+    public RWayTrie() {
+        this.root = new Node();
+    }
+
 
     @Override
     public void add(Tuple t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String word = t.getTerm();
+        Integer wght = t.getWeight();
+        root.put(root, word, wght, 0);
+        size++;
     }
 
     @Override
     public boolean contains(String word) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (root.get(root, word, 0).equals(null)) {
+            return false;
+        } else {
+            return true;
+        }
+
+
     }
 
     @Override
     public boolean delete(String word) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (root.put(root, word, 0, 0).getVal().equals(0)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
+
 
     @Override
     public Iterable<String> words() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return wordsWithPrefix("");
     }
 
     @Override
     public Iterable<String> wordsWithPrefix(String s) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Queue qu = new Queue();
+        ArrayList<String> result = new ArrayList<>();
+        Node nod = root.get(root, s, 0);
+        root.wordWithPref(nod, s, qu);
+        for (int i = 0; i < qu.size(); i++) {
+            result.add((String) qu.dequeue());
+        }
+        return result;
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return size;
     }
 
 }
