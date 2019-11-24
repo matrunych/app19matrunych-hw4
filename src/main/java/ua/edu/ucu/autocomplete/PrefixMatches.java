@@ -19,9 +19,9 @@ public class PrefixMatches {
 
     public int load(String... strings) {
         int counter = 0;
-        for (String element : strings) {
-            for (String word : element.split(" ")) {
-                if (word.length() > 2) {
+        for(String element: strings){
+            for(String word: element.split(" ")){
+                if(word.length() > 2){
                     trie.add(new Tuple(word, word.length()));
                     counter++;
                 }
@@ -43,15 +43,14 @@ public class PrefixMatches {
     }
 
     public Iterable<String> wordsWithPrefix(String pref, int k) {
+
         Iterable<String> words = trie.wordsWithPrefix(pref);
         ArrayList<String> result = new ArrayList<>();
-        for (String word : words) {
-            if (k > word.length() - pref.length()) {
+        for (String word: words) {
+            if(k > word.length() - pref.length()){
                 result.add(word);
             }
-        }
-        return result;
-
+        }return result;
     }
 
     public int size() {
