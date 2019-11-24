@@ -57,7 +57,8 @@ public class RWayTrie implements Trie {
         ArrayList<String> result = new ArrayList<>();
         Node nod = root.get(root, s, 0);
         root.wordWithPref(nod, s, qu);
-        for (int i = 0; i < qu.size(); i++) {
+        int size = qu.size();
+        for (int i = 0; i < size; i++) {
             result.add((String) qu.dequeue());
         }
         return result;
