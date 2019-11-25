@@ -86,13 +86,14 @@ public class RWayTrie implements Trie {
     }
 
     @Override
-    public boolean delete(String word) {
-        root = delete(root, word, 0);
-        if (root == null) {
+    public boolean delete(String key) {
+        if (contains(key)) {
+            root = delete(root, key, 0);
+            size--;
+            return true;
+        } else {
             return false;
         }
-        size--;
-        return true;
     }
 
 
